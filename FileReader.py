@@ -52,9 +52,7 @@ class FileReader:
     def checkFilesExistance(self, files, dependencies):
         existedFiles = []
         for dep in dependencies:
-            dep = re.sub(r"[\\|/]", os.path.sep, dep, 0)
             depPath = os.path.abspath(dep)
-            # print(depPath)
             if depPath in files:
                 existedFiles.append(depPath)
         return existedFiles

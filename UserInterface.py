@@ -26,7 +26,9 @@ class IU:
         )
         for path, subdirs, files in os.walk(root):
             for name in files:
-                osSpecificFiles.append(os.path.join(path, name))
+                name = os.path.join(path, name)
+                file = os.path.abspath(name)
+                osSpecificFiles.append(file)
         fr = filereader.FileReader() #inicjowanie klasy fileReader
         fr.readFiles(osSpecificFiles)
 
