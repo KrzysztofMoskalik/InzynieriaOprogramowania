@@ -19,6 +19,6 @@ class PhpParser:
         file = re.sub(self.commentPatter, '', file, 0, re.MULTILINE)
         return file
 
-    def findDependencies(self, file):
+    def findDependencies(self, file, rootDirectory):
         dependencies = re.findall(self.linkPattern, file, re.MULTILINE)
         return dependencies

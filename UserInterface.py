@@ -30,7 +30,7 @@ class IU:
                 file = os.path.abspath(name)
                 osSpecificFiles.append(file)
         fr = filereader.FileReader() #inicjowanie klasy fileReader
-        fr.readFiles(osSpecificFiles)
+        fr.readFiles(osSpecificFiles, root)
 
     def exit(self) :
         sys.exit()

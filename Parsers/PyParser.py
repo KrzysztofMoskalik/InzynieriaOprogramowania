@@ -23,7 +23,7 @@ class PyParser:
         file = re.sub(self.commentPatter, '', file, 0, re.MULTILINE)
         return file
 
-    def findDependencies(self, file):
+    def findDependencies(self, file, rootDirectory):
         fixedDependencies = []
         dependencies = re.findall(self.linkPattern, file, re.MULTILINE)
         for dependency in dependencies:

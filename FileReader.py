@@ -20,7 +20,7 @@ class FileReader:
     }
 
 #metoda do odczytu plików
-    def readFiles(self, files):
+    def readFiles(self, files, rootDirectory):
 
         '''
         dla kazdej nazwy pliku wybieramy ścieżkę do tego pliku i rozszeżenie
@@ -41,18 +41,19 @@ class FileReader:
 
             file = open(fileName, 'r')
             file = parser.removeComments(file.read())
-            dependencies = parser.findDependencies(file)
-            dependencies = self.checkFilesExistance(files, dependencies)
+            dependencies = parser.findDependencies(file, rootDirectory)
+            dependencies = self.checkFilesExistance(files, dependencies, rootDirectory)
             self.dependencies[fileName] = dependencies
         print (self.dependencies)
 
     '''
     metoda do sprawdzania czy podany plik istnieje w zestawie plików wejściowych
     '''
-    def checkFilesExistance(self, files, dependencies):
+    def checkFilesExistance(self, files, dependencies,rootDirectory):
         existedFiles = []
         for dep in dependencies:
-            depPath = os.path.abspath(dep)
+            depPath = os.path.join(rootDirectory, dep)
+            depPath = os.path.abspath(depPath)
             if depPath in files:
                 existedFiles.append(depPath)
         return existedFiles
