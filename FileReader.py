@@ -5,6 +5,8 @@ import re
 from Parsers.PhpParser import PhpParser
 from Parsers.CppParser import CppParser
 from Parsers.PyParser import PyParser
+import networkx as nx
+import matplotlib.pyplot as plt
 
 #klasa fileReader
 class FileReader:
@@ -44,8 +46,15 @@ class FileReader:
             dependencies = parser.findDependencies(file, rootDirectory)
             dependencies = self.checkFilesExistance(files, dependencies, rootDirectory)
             self.dependencies[fileName] = dependencies
-        print (self.dependencies)
-
+        
+        '''
+        rysowanie grafu
+        '''
+        G = nx.DiGraph(self.dependencies)
+        nx.draw(G, with_labels=True, font_weight='bold')
+        plt.savefig("simple_path.png")
+        plt.show()  # wyswietlanie grafu
+    
     '''
     metoda do sprawdzania czy podany plik istnieje w zestawie plików wejściowych
     '''
