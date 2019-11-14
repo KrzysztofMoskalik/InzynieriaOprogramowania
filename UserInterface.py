@@ -11,7 +11,7 @@ import FileReader as filereader
 class IU:
     def __init__(self): #konstruktor
         root = Tk()
-        OpenFileButton = Button(root, text = "wczytaj pliki", command = self.openfiles)
+        OpenFileButton = Button(root, text = "Wczytaj pliki i narysuj ich graf", command = self.openfiles)
         ExitButton = Button(root, text = "koniec", command = self.exit)
         OpenFileButton.pack()
         ExitButton.pack()
